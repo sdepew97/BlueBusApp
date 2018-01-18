@@ -11,4 +11,9 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
+    <string name="Haverford">Haverford</string>
+    <string name="BrynMawr">Bryn Mawr </string>
+    <string name="Start">Start </string>
+    <string name="Go">Go! </string>
+    <string name="StartLocation">Start Location: </string>
 </resources>
