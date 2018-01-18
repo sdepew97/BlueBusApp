@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">BlueBus</string>
+    <string name="dayoftheWeek">Day of the week </string>
+    <string-array name="days_array">
+        <item>Select your choice</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
 </resources>
