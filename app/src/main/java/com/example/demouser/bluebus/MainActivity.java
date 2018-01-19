@@ -1,5 +1,6 @@
 package com.example.demouser.bluebus;
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.camera2.CaptureFailure;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static Boolean location;
     public static int hour;
     public static int minute;
-    public static String AM_PM;
+    public static boolean AM_PM;
     public static String day;
 
     private  Exception e = new Exception();
@@ -61,6 +62,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay,
+                                  int minute) {
+                hour = hourOfDay;
+                minute = minute;
+                AM_PM = hour < 12;
+            }
+        });
+
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
@@ -88,23 +99,23 @@ public class MainActivity extends AppCompatActivity {
         return toggleButton.isChecked();
     }
 
-    public static int getHour()
-    {
-        timePicker.clearFocus();
-        Log.d("hour", Integer.toString(timePicker.getCurrentHour()));
-        return timePicker.getCurrentHour();
-    }
-
-    public static int getMinute()
-    {
-        timePicker.clearFocus();
-        Log.d("minute", Integer.toString(timePicker.getCurrentMinute()));
-        return timePicker.getCurrentMinute();
-    }
-
-    public static String getAmPm(int hourOfDay)
-    {
-        return (hourOfDay < 12) ? "AM" : "PM";
-    }
+//    public static int getHour()
+//    {
+//        timePicker.clearFocus();
+//        Log.d("hour", Integer.toString(timePicker.getCurrentHour()));
+//        return timePicker.getCurrentHour();
+//    }
+//
+//    public static int getMinute()
+//    {
+//        timePicker.clearFocus();
+//        Log.d("minute", Integer.toString(timePicker.getCurrentMinute()));
+//        return timePicker.getCurrentMinute();
+//    }
+//
+//    public static String getAmPm(int hourOfDay)
+//    {
+//        return (hourOfDay < 12) ? "AM" : "PM";
+//    }
 
 }
