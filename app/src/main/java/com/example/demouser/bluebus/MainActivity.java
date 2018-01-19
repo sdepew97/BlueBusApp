@@ -99,23 +99,4 @@ public class MainActivity extends AppCompatActivity {
         return toggleButton.isChecked();
     }
 
-//    public static int getHour()
-//    {
-//        timePicker.clearFocus();
-//        Log.d("hour", Integer.toString(timePicker.getCurrentHour()));
-//        return timePicker.getCurrentHour();
-//    }
-//
-//    public static int getMinute()
-//    {
-//        timePicker.clearFocus();
-//        Log.d("minute", Integer.toString(timePicker.getCurrentMinute()));
-//        return timePicker.getCurrentMinute();
-//    }
-//
-//    public static String getAmPm(int hourOfDay)
-//    {
-//        return (hourOfDay < 12) ? "AM" : "PM";
-//    }
-
 }
