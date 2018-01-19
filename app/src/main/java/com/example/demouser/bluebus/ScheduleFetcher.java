@@ -10,6 +10,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +22,7 @@ public class ScheduleFetcher extends AsyncTask<Void, Void, Void> {
             "saturdaynight", "sunday"};
     protected static Map<String, List<Time>> schedule = new HashMap<>();
 
-    public ScheduleFetcher()
-    {
+    public ScheduleFetcher() {
     }
 
     @Override
@@ -45,7 +46,6 @@ public class ScheduleFetcher extends AsyncTask<Void, Void, Void> {
         if (doc == null) {
             return "Failed to fetch document";
         }
-        Log.d("document title: ", doc.title());
 
         Elements siteContent = doc.select("div#siteContentContainer");
         Elements threeQuarters = siteContent.select("div.three-quarters.first");
@@ -67,7 +67,9 @@ public class ScheduleFetcher extends AsyncTask<Void, Void, Void> {
                     schedule.get(day).add(parseRow(day, row));
                 }
             }
-            Log.d(day + " ", schedule.get(day).toString());
+            if (schedule.get(day) != null) {
+                Collections.sort(schedule.get(day));
+            }
         }
         return "TRUE";
     }
@@ -122,8 +124,8 @@ class Time implements Comparable<Time> {
     }
 
     public static int toMinutes(String time) {
-        int morning = time.indexOf("AM");
-        int afternoon = time.indexOf("PM");
+        int morning = time.toUpperCase().indexOf("AM");
+        int afternoon = time.toUpperCase().indexOf("PM");
         boolean isAfternoon = afternoon != -1;
         String clock = isAfternoon ? time.substring(0, afternoon) : time.substring(0, morning);
         String[] tokens = clock.split(":");
@@ -136,7 +138,7 @@ class Time implements Comparable<Time> {
 
     @Override
     public int compareTo(Time that) {
-        return !MainActivity.location // location == true -> haverford
+        return !MainActivity.getLoction() // location == true -> haverford
                 ? toMinutes(this.bToHLeave) - toMinutes(that.bToHLeave)
                 : toMinutes(this.hToBLeave) - toMinutes(that.hToBLeave);
     }

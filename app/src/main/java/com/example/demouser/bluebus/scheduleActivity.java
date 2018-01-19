@@ -12,7 +12,9 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class scheduleActivity extends AppCompatActivity {
@@ -98,22 +100,23 @@ public class scheduleActivity extends AppCompatActivity {
         int numTimes = daySchedule.size();
         TableLayout tl = findViewById(R.id.table);
         int chosenTime = MainActivity.hour * 60 + MainActivity.minute;
-        Log.d("hour", String.valueOf(MainActivity.hour));
-        Log.d("minute", String.valueOf(MainActivity.minute));
-        Log.d("isAm", String.valueOf(MainActivity.AM_PM));
-        Log.d("chosentime", String.valueOf(chosenTime));
+        if(chosenTime == 0)
+        {
+            Calendar now = Calendar.getInstance();
+            chosenTime = now.get(Calendar.HOUR_OF_DAY) * 60 + now.get(Calendar.MINUTE);;
+        }
         for (int i = 0; i < numTimes; i++) {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
             Time t = daySchedule.get(i);
             if (!haverford) {
-                if (Time.toMinutes(t.leaveBrynMawr()) >= chosenTime) {
+                if (Time.toMinutes(t.leaveBrynMawr()) > chosenTime) {
                     Log.d("brynmawrtime", String.valueOf(Time.toMinutes(t.leaveBrynMawr())));
                     tr.addView(getTextView(i + 1, t.leaveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
                     tr.addView(getTextView(i + numTimes, t.arriveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
                 }
             } else {
-                if (Time.toMinutes(t.leaveHaverford()) >= chosenTime) {
+                if (Time.toMinutes(t.leaveHaverford()) > chosenTime) {
                     tr.addView(getTextView(i + 1, t.leaveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
                     tr.addView(getTextView(i + numTimes, t.arriveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
                 }
