@@ -20,12 +20,17 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class MainActivity extends AppCompatActivity {
 
     //Get all GUI components
-    ToggleButton toggleButton;
-    TimePicker timePicker;
-    Spinner dayoftheWeekSpinner;
-    Button goButton;
-    TextView startLabel;
+    public ToggleButton toggleButton;
+    public TimePicker timePicker;
+    public Spinner dayoftheWeekSpinner;
+    public Button goButton;
+    public TextView startLabel;
     String selected;
+
+    public static Boolean location;
+    public static int hour;
+    public static int minute;
+    public static String AM_PM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,5 +72,29 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //obtain information from GUI
+    public boolean getLoction()
+    {
+        return toggleButton.isChecked();
+    }
+
+    public int getHour()
+    {
+        timePicker.clearFocus();
+        Log.d("hour", Integer.toString(timePicker.getCurrentHour()));
+        return timePicker.getCurrentHour();
+    }
+
+    public int getMinute()
+    {
+        timePicker.clearFocus();
+        Log.d("minute", Integer.toString(timePicker.getCurrentMinute()));
+        return timePicker.getCurrentMinute();
+    }
+
+    public String getAmPm(int hourOfDay)
+    {
+        return (hourOfDay < 12) ? "AM" : "PM";
+    }
 }
 
