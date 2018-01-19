@@ -19,5 +19,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> days = ArrayAdapter.createFromResource(this, R.array.days_array, android.R.layout.simple_spinner_item);
         days.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dayoftheWeekSpinner.setAdapter(days);
+
     }
 }
