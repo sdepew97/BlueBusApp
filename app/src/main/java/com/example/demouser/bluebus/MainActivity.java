@@ -1,6 +1,7 @@
 package com.example.demouser.bluebus;
 
 import android.content.Intent;
+import android.hardware.camera2.CaptureFailure;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
+
+import java.security.cert.Extension;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     public static int minute;
     public static String AM_PM;
     public static String day;
+
+    private  Exception e = new Exception();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +57,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onNothingSelected(AdapterView<?> parent){
-
-        }
+            }
         });
 
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                gotoSchedule(view);
+            public void onClick (View view) {
+                if (day == "Day of the week"){
+                    throw new RuntimeException ("Please choose a day.");
+                }else {
+                    gotoSchedule(view);
+                }
             }
         });
     }
@@ -94,7 +102,4 @@ public class MainActivity extends AppCompatActivity {
         return (hourOfDay < 12) ? "AM" : "PM";
     }
 
-    public static String getDay(){
-        return day;
-    }
 }
