@@ -33,40 +33,6 @@
                     }
                 }
             ]
-        },
-        {
-            "outputFile": "/Users/demouser/Desktop/BlueBusApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
-            "map": [
-                {
-                    "source": "/Users/demouser/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/f0c0d6935942498ffde5570a261f2e4e/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "5",
-                        "endColumns": "12",
-                        "endOffsets": "223"
-                    },
-                    "to": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "121",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "/Users/demouser/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/3d29b15876af2869066c6b9e815becc5/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                }
-            ]
         }
     ]
 }

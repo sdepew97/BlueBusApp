@@ -1,4 +1,0 @@
-#Thu Jan 18 16:24:31 EST 2018
-base.0=/Users/demouser/AndroidStudioProjects/BlueBusApp/app/build/intermediates/transforms/dexMerger/debug/2
-path.0=classes.dex
-renamed.0=classes.dex
