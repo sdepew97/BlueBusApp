@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public static boolean AM_PM;
     public static String day;
 
-    private  Exception e = new Exception();
+    private Exception e = new Exception();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 day = parent.getItemAtPosition(position).toString();
             }
 
-            public void onNothingSelected(AdapterView<?> parent){
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay,
-                                  int minuteOfDay) {
+                                      int minuteOfDay) {
                 hour = hourOfDay;
                 minute = minuteOfDay;
                 AM_PM = hour < 12;
@@ -74,48 +75,27 @@ public class MainActivity extends AppCompatActivity {
 
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View view) {
-                if (day.equals("Day of the week")){
+            public void onClick(View view) {
+                if (day.equals("Day of the week")) {
                     int duration = Toast.LENGTH_SHORT;
                     Context context = getApplicationContext();
                     CharSequence text = "Please choose the day";
-                    Toast toast = Toast.makeText(context,text,duration);
+                    Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-                }else {
+                } else {
                     gotoSchedule(view);
                 }
             }
         });
     }
 
-    public void gotoSchedule(View view){
+    public void gotoSchedule(View view) {
         Intent intent = new Intent(this, scheduleActivity.class);
         startActivity(intent);
     }
 
     //obtain information from GUI
-    public static boolean getLoction()
-    {
+    public static boolean getLoction() {
         return toggleButton.isChecked();
     }
-
-//    public static int getHour()
-//    {
-//        timePicker.clearFocus();
-//        Log.d("hour", Integer.toString(timePicker.getCurrentHour()));
-//        return timePicker.getCurrentHour();
-//    }
-//
-//    public static int getMinute()
-//    {
-//        timePicker.clearFocus();
-//        Log.d("minute", Integer.toString(timePicker.getCurrentMinute()));
-//        return timePicker.getCurrentMinute();
-//    }
-//
-//    public static String getAmPm(int hourOfDay)
-//    {
-//        return (hourOfDay < 12) ? "AM" : "PM";
-//    }
-
 }
