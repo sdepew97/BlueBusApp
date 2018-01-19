@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -22,13 +21,17 @@ public class scheduleActivity extends AppCompatActivity {
     ArrayList<String> leaveHaverford = new ArrayList<>();
     ArrayList<String> arriveBrynMawr = new ArrayList<>();
 
+    Boolean haverford;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        //populate array lists
+        //get haverford information
+        haverford = MainActivity.getLoction();
 
+        //populate array lists
         addHeaders();
         addData();
     }
@@ -68,10 +71,16 @@ public class scheduleActivity extends AppCompatActivity {
         TableLayout tl = findViewById(R.id.table);
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, "Leave Bryn Mawr", Color.WHITE, Typeface.BOLD, Color.BLUE));
-        tr.addView(getTextView(0, "Arrive Haverford", Color.WHITE, Typeface.BOLD, Color.BLUE));
-        tr.addView(getTextView(0, "Leave Haverford", Color.WHITE, Typeface.BOLD, Color.BLUE));
-        tr.addView(getTextView(0, "Arrive Bryn Mawr", Color.WHITE, Typeface.BOLD, Color.BLUE));
+        if(!haverford)
+        {
+            tr.addView(getTextView(0, "Leave Bryn Mawr", Color.WHITE, Typeface.BOLD, Color.BLUE));
+            tr.addView(getTextView(0, "Arrive Haverford", Color.WHITE, Typeface.BOLD, Color.BLUE));
+        }
+        else
+        {
+            tr.addView(getTextView(0, "Leave Haverford", Color.WHITE, Typeface.BOLD, Color.BLUE));
+            tr.addView(getTextView(0, "Arrive Bryn Mawr", Color.WHITE, Typeface.BOLD, Color.BLUE));
+        }
         tl.addView(tr, getTblLayoutParams());
     }
 
