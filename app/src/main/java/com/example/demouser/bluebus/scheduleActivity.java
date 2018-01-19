@@ -31,7 +31,8 @@ public class scheduleActivity extends AppCompatActivity {
         haverford = MainActivity.getLoction();
 
         //fill array lists, here
-        daySchedule = ScheduleFetcher.schedule.get(MainActivity.day.toLowerCase());
+        String daySelected = MainActivity.day.toLowerCase();
+        daySchedule = ScheduleFetcher.schedule.get(daySelected);
 
         //populate array lists
         addHeaders();
@@ -95,6 +96,10 @@ public class scheduleActivity extends AppCompatActivity {
      * This function add the data to the table
      **/
     public void addData() {
+        if (daySchedule == null)
+        {
+            return;
+        }
         int numTimes = daySchedule.size();
         TableLayout tl = findViewById(R.id.table);
         for (int i = 0; i < numTimes; i++) {
