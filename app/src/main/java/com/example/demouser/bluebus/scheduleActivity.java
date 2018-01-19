@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -96,13 +97,18 @@ public class scheduleActivity extends AppCompatActivity {
         }
         int numTimes = daySchedule.size();
         TableLayout tl = findViewById(R.id.table);
-        int chosenTime = MainActivity.AM_PM ? MainActivity.hour * 60 + MainActivity.minute : (MainActivity.hour + 12) * 60 + MainActivity.minute;
+        int chosenTime = MainActivity.hour * 60 + MainActivity.minute;
+        Log.d("hour", String.valueOf(MainActivity.hour));
+        Log.d("minute", String.valueOf(MainActivity.minute));
+        Log.d("isAm", String.valueOf(MainActivity.AM_PM));
+        Log.d("chosentime", String.valueOf(chosenTime));
         for (int i = 0; i < numTimes; i++) {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
             Time t = daySchedule.get(i);
             if (!haverford) {
                 if (Time.toMinutes(t.leaveBrynMawr()) >= chosenTime) {
+                    Log.d("brynmawrtime", String.valueOf(Time.toMinutes(t.leaveBrynMawr())));
                     tr.addView(getTextView(i + 1, t.leaveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
                     tr.addView(getTextView(i + numTimes, t.arriveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
                 }

@@ -130,7 +130,7 @@ class Time implements Comparable<Time> {
         String[] tokens = clock.split(":");
         if(tokens.length != 2) return -1;
         int hour = Integer.valueOf(tokens[0].trim());
-        if(isAfternoon) hour += 12;
+        if(isAfternoon && hour < 12) hour += 12;
         int minute = Integer.valueOf(tokens[1].trim());
         return hour * 60 + minute;
     }

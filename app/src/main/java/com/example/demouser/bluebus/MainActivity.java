@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay,
-                                  int minute) {
+                                  int minuteOfDay) {
                 hour = hourOfDay;
-                minute = minute;
+                minute = minuteOfDay;
                 AM_PM = hour < 12;
             }
         });
