@@ -19,7 +19,6 @@ public class ScheduleFetcher extends AsyncTask<Void, Void, Void> {
     private static final String[] days = {"monday", "tuesday", "wednesday", "thursday", "friday",
             "saturdaynight", "sunday"};
     protected static Map<String, List<Time>> schedule = new HashMap<>();
-    protected static boolean fromBrynMawr = false;
 
     public ScheduleFetcher()
     {
@@ -33,12 +32,7 @@ public class ScheduleFetcher extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void result) {
-        // fill in the table
-        if (fromBrynMawr) {
 
-        } else {
-            
-        }
     }
 
     public String fetch() {
@@ -144,7 +138,7 @@ class Time implements Comparable<Time> {
 
     @Override
     public int compareTo(Time that) {
-        return ScheduleFetcher.fromBrynMawr
+        return !MainActivity.location // location == true -> haverford
                 ? toMinutes(this.bToHLeave) - toMinutes(that.bToHLeave)
                 : toMinutes(this.hToBLeave) - toMinutes(that.hToBLeave);
     }
