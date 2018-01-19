@@ -671,18 +671,18 @@ public final class R {
         public static final int submenuarrow = 0x7f080070;
         public static final int submit_area = 0x7f080071;
         public static final int tabMode = 0x7f080072;
-        public static final int text = 0x7f080073;
-        public static final int text2 = 0x7f080074;
-        public static final int textSpacerNoButtons = 0x7f080075;
-        public static final int textSpacerNoTitle = 0x7f080076;
-        public static final int time = 0x7f080077;
-        public static final int title = 0x7f08007a;
-        public static final int titleDividerNoCustom = 0x7f08007b;
-        public static final int title_template = 0x7f08007c;
-        public static final int topPanel = 0x7f08007f;
-        public static final int uniform = 0x7f080080;
-        public static final int up = 0x7f080081;
-        public static final int wrap_content = 0x7f080085;
+        public static final int text = 0x7f080074;
+        public static final int text2 = 0x7f080075;
+        public static final int textSpacerNoButtons = 0x7f080076;
+        public static final int textSpacerNoTitle = 0x7f080077;
+        public static final int time = 0x7f080078;
+        public static final int title = 0x7f08007b;
+        public static final int titleDividerNoCustom = 0x7f08007c;
+        public static final int title_template = 0x7f08007d;
+        public static final int topPanel = 0x7f080080;
+        public static final int uniform = 0x7f080081;
+        public static final int up = 0x7f080082;
+        public static final int wrap_content = 0x7f080086;
     }
     public static final class integer {
         public static final int abc_config_activityDefaultDur = 0x7f090000;
