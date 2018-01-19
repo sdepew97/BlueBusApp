@@ -6,20 +6,19 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class scheduleActivity extends AppCompatActivity {
 
-    //Data for populating the table
-    ArrayList<String> leaveBrynMawr = new ArrayList<>();
-    ArrayList<String> arriveHaverford = new ArrayList<>();
-    ArrayList<String> leaveHaverford = new ArrayList<>();
-    ArrayList<String> arriveBrynMawr = new ArrayList<>();
+    // Data for populating the table
+    List<Time> daySchedule = new ArrayList<>();
 
     Boolean haverford;
 
@@ -31,9 +30,18 @@ public class scheduleActivity extends AppCompatActivity {
         //get haverford information
         haverford = MainActivity.getLoction();
 
+        //fill array lists, here
+        String daySelected = MainActivity.day.toLowerCase();
+        daySchedule = ScheduleFetcher.schedule.get(daySelected);
+
         //populate array lists
         addHeaders();
         addData();
+    }
+
+    private void populateArrayLists()
+    {
+
     }
 
     private TextView getTextView(int id, String title, int color, int typeface, int bgColor) {
@@ -88,15 +96,25 @@ public class scheduleActivity extends AppCompatActivity {
      * This function add the data to the table
      **/
     public void addData() {
-        int numTimes = leaveBrynMawr.size();
+        if (daySchedule == null)
+        {
+            return;
+        }
+        int numTimes = daySchedule.size();
         TableLayout tl = findViewById(R.id.table);
         for (int i = 0; i < numTimes; i++) {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
-            tr.addView(getTextView(i + 1, leaveBrynMawr.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-            tr.addView(getTextView(i + numTimes, arriveHaverford.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-            tr.addView(getTextView(i + numTimes + numTimes, leaveHaverford.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-            tr.addView(getTextView(i + numTimes + numTimes + numTimes, arriveBrynMawr.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+            if(!haverford)
+            {
+                tr.addView(getTextView(i + 1, daySchedule.get(i).leaveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                tr.addView(getTextView(i + numTimes, daySchedule.get(i).arriveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+            }
+            else
+            {
+                tr.addView(getTextView(i + 1, daySchedule.get(i).leaveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                tr.addView(getTextView(i + numTimes, daySchedule.get(i).arriveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+            }
             tl.addView(tr, getTblLayoutParams());
         }
     }
