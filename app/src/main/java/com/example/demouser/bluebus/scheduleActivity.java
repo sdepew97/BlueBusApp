@@ -96,7 +96,7 @@ public class scheduleActivity extends AppCompatActivity {
         }
         int numTimes = daySchedule.size();
         TableLayout tl = findViewById(R.id.table);
-        int chosenTime = MainActivity.getAmPm(0).equals("PM") ? (MainActivity.getHour() + 12) * 60 + MainActivity.getMinute() : MainActivity.getHour() * 60 + MainActivity.getMinute();
+        int chosenTime = MainActivity.AM_PM ? MainActivity.hour * 60 + MainActivity.minute : (MainActivity.hour + 12) * 60 + MainActivity.minute;
         for (int i = 0; i < numTimes; i++) {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
