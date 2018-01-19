@@ -38,8 +38,7 @@ public class scheduleActivity extends AppCompatActivity {
         addData();
     }
 
-    private void populateArrayLists()
-    {
+    private void populateArrayLists() {
 
     }
 
@@ -78,13 +77,10 @@ public class scheduleActivity extends AppCompatActivity {
         TableLayout tl = findViewById(R.id.table);
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        if(!haverford)
-        {
+        if (!haverford) {
             tr.addView(getTextView(0, "Leave Bryn Mawr", Color.WHITE, Typeface.BOLD, Color.BLUE));
             tr.addView(getTextView(0, "Arrive Haverford", Color.WHITE, Typeface.BOLD, Color.BLUE));
-        }
-        else
-        {
+        } else {
             tr.addView(getTextView(0, "Leave Haverford", Color.WHITE, Typeface.BOLD, Color.BLUE));
             tr.addView(getTextView(0, "Arrive Bryn Mawr", Color.WHITE, Typeface.BOLD, Color.BLUE));
         }
@@ -95,24 +91,26 @@ public class scheduleActivity extends AppCompatActivity {
      * This function add the data to the table
      **/
     public void addData() {
-        if (daySchedule == null)
-        {
+        if (daySchedule == null) {
             return;
         }
         int numTimes = daySchedule.size();
         TableLayout tl = findViewById(R.id.table);
+        int chosenTime = MainActivity.getAmPm(0).equals("PM") ? (MainActivity.getHour() + 12) * 60 + MainActivity.getMinute() : MainActivity.getHour() * 60 + MainActivity.getMinute();
         for (int i = 0; i < numTimes; i++) {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
-            if(!haverford)
-            {
-                tr.addView(getTextView(i + 1, daySchedule.get(i).leaveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-                tr.addView(getTextView(i + numTimes, daySchedule.get(i).arriveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-            }
-            else
-            {
-                tr.addView(getTextView(i + 1, daySchedule.get(i).leaveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-                tr.addView(getTextView(i + numTimes, daySchedule.get(i).arriveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+            Time t = daySchedule.get(i);
+            if (!haverford) {
+                if (Time.toMinutes(t.leaveBrynMawr()) >= chosenTime) {
+                    tr.addView(getTextView(i + 1, t.leaveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                    tr.addView(getTextView(i + numTimes, t.arriveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                }
+            } else {
+                if (Time.toMinutes(t.leaveHaverford()) >= chosenTime) {
+                    tr.addView(getTextView(i + 1, t.leaveHaverford(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                    tr.addView(getTextView(i + numTimes, t.arriveBrynMawr(), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                }
             }
             tl.addView(tr, getTblLayoutParams());
         }
