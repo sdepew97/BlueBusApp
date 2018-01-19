@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -20,6 +21,12 @@ public class MainActivity extends AppCompatActivity {
     public static Spinner dayoftheWeekSpinner;
     public static Button goButton;
     public static TextView startLabel;
+
+    public static Boolean location;
+    public static int hour;
+    public static int minute;
+    public static String AM_PM;
+    public static String day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,16 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> days = ArrayAdapter.createFromResource(this, R.array.days_array, android.R.layout.simple_spinner_item);
         days.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dayoftheWeekSpinner.setAdapter(days);
+        dayoftheWeekSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                day = parent.getItemAtPosition(position).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent){
+
+        }
+        });
 
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
         return (hourOfDay < 12) ? "AM" : "PM";
     }
 
+    public static String getDay(){
+        return day;
+    }
     public static String dayOfTheWeek()
     {
         return null;

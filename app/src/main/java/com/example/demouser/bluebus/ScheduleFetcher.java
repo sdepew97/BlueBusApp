@@ -18,7 +18,7 @@ public class ScheduleFetcher extends AsyncTask<Void, Void, Void> {
     private static final String BLUE_BUS_URL = "http://www.brynmawr.edu/transportation/bico.shtml";
     private static final String[] days = {"monday", "tuesday", "wednesday", "thursday", "friday",
             "saturdaynight", "sunday"};
-    private static Map<String, List<Time>> schedule = new HashMap<>();
+    protected static Map<String, List<Time>> schedule = new HashMap<>();
     protected static boolean fromBrynMawr = false;
 
     public ScheduleFetcher()
