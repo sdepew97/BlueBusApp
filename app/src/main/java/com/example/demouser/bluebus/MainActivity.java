@@ -97,4 +97,8 @@ public class MainActivity extends AppCompatActivity {
     public static String getDay(){
         return day;
     }
+    public static String dayOfTheWeek()
+    {
+        return null;
+    }
 }
