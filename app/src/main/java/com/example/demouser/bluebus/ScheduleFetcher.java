@@ -37,7 +37,7 @@ public class ScheduleFetcher extends AsyncTask<Void, Void, Void> {
         if (fromBrynMawr) {
 
         } else {
-            
+
         }
     }
 
