@@ -1,5 +1,6 @@
 package com.example.demouser.bluebus;
 
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.camera2.CaptureFailure;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.security.cert.Extension;
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     public static String day;
 
     private  Exception e = new Exception();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +64,12 @@ public class MainActivity extends AppCompatActivity {
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                if (day == "Day of the week"){
-                    throw new RuntimeException ("Please choose a day.");
+                if (day.equals("Day of the week")){
+                    int duration = Toast.LENGTH_SHORT;
+                    Context context = getApplicationContext();
+                    CharSequence text = "Please choose the day";
+                    Toast toast = Toast.makeText(context,text,duration);
+                    toast.show();
                 }else {
                     gotoSchedule(view);
                 }
