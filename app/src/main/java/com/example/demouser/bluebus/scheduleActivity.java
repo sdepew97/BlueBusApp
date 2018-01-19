@@ -31,6 +31,9 @@ public class scheduleActivity extends AppCompatActivity {
         //get haverford information
         haverford = MainActivity.getLoction();
 
+        //fill array lists, here
+        leaveBrynMawr
+
         //populate array lists
         addHeaders();
         addData();
@@ -93,10 +96,16 @@ public class scheduleActivity extends AppCompatActivity {
         for (int i = 0; i < numTimes; i++) {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
-            tr.addView(getTextView(i + 1, leaveBrynMawr.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-            tr.addView(getTextView(i + numTimes, arriveHaverford.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-            tr.addView(getTextView(i + numTimes + numTimes, leaveHaverford.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
-            tr.addView(getTextView(i + numTimes + numTimes + numTimes, arriveBrynMawr.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+            if(!haverford)
+            {
+                tr.addView(getTextView(i + 1, leaveBrynMawr.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                tr.addView(getTextView(i + numTimes, arriveHaverford.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+            }
+            else
+            {
+                tr.addView(getTextView(i + 1, leaveHaverford.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+                tr.addView(getTextView(i + numTimes, arriveBrynMawr.get(i), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorAccent)));
+            }
             tl.addView(tr, getTblLayoutParams());
         }
     }
