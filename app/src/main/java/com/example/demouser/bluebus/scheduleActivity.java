@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
