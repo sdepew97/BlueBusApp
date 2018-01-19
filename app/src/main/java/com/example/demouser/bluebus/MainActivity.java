@@ -21,11 +21,6 @@ public class MainActivity extends AppCompatActivity {
     public static Button goButton;
     public static TextView startLabel;
 
-    public static Boolean location;
-    public static int hour;
-    public static int minute;
-    public static String AM_PM;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,4 +77,8 @@ public class MainActivity extends AppCompatActivity {
         return (hourOfDay < 12) ? "AM" : "PM";
     }
 
+    public static String dayOfTheWeek()
+    {
+        return null;
+    }
 }
