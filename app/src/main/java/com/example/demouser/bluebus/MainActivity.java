@@ -94,4 +94,7 @@ public class MainActivity extends AppCompatActivity {
         return (hourOfDay < 12) ? "AM" : "PM";
     }
 
+    public static String getDay(){
+        return day;
+    }
 }
